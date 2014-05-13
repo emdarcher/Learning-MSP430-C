@@ -1,0 +1,15 @@
+//notes
+
+for compiling
+
+do
+msp430-gcc -mmcu=<msp430 chip name> -mdisable-watchdog <program>.c
+
+then use 
+mspdebug rf2500
+
+to connect
+
+then in mspdebug type run or exit
+
+
