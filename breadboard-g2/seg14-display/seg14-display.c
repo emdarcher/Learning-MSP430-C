@@ -57,3 +57,28 @@ P1.6 L_A/I_B
 P1.7 K_A/M_B
  
 */
+
+#define GND0_A BIT0
+#define GND0_B BIT1
+#define GND1_A BIT2
+#define GND1_b BIT3
+#define dp0_A BIT4
+#define dp1_A BIT5
+#define LED_DEBUG BIT0
+#define D_A BIT1
+#define A_B BIT1
+#define B_A BIT2
+#define F_B BIT2
+#define C_A BIT3
+#define E_B BIT3
+#define Gb_A BIT4
+#define Ga_B BIT4
+#define J_A BIT5
+#define H_B BIT5
+#define L_A BIT6
+#define I_B BIT6
+#define K_A BIT7
+#define M_B BIT7
+
+
+#
