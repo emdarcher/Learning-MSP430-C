@@ -57,6 +57,10 @@ P1.6 L_A/I_B
 P1.7 K_A/M_B
  
 */
+//include stuff
+#include <msp430.h>
+
+
 
 #define GND0_A BIT0
 #define GND0_B BIT1
@@ -80,5 +84,22 @@ P1.7 K_A/M_B
 #define K_A BIT7
 #define M_B BIT7
 
+//array to hold binary values that correspond to the segments, not 
+//port values. These are from ASCII dec 32 to 127.
+unsigned char charOut[] = {
+//       b   A/B = 0/1 or: 0 for A, 1 for B.
+//  A:KLJGCBD^	<-these are for the segments
+//  B:MIHGEFA^
+//       a    
+	0b00000000, //space
+	0b00000000, //can't '!'
+	0,//'"'
+	0,//'#'
+	0,
+	0,
+};
 
-#
+void main(void)
+{
+
+}
