@@ -84,6 +84,9 @@ P1.7 K_A/M_B
 #define K_A BIT7
 #define M_B BIT7
 
+/*
+ * nevermind this
+ * 
 //array to hold binary values that correspond to the segments, not 
 //port values. These are from ASCII dec 32 to 127.
 unsigned char charOut[] = {
@@ -95,8 +98,18 @@ unsigned char charOut[] = {
 	0b00000000, //can't '!'
 	0,//'"'
 	0,//'#'
+	0b,
 	0,
-	0,
+};*/
+
+//array to store values for segments
+unsigned int segOut[] = {
+//           led       
+//           ^   b   p
+//  A:       ^KLJGCBDd
+//  B:MIHGEFA^
+//       a
+	
 };
 
 void main(void)
