@@ -102,14 +102,44 @@ unsigned char charOut[] = {
 	0,
 };*/
 
-//array to store values for segments
-unsigned int segOut[] = {
+/*again,
+
+letters that correspond to segments
+ ---A---
+|\  |  /|
+F H I J B
+|_Ga|Gb_|
+|  /|\  |
+E M L K C
+|/  |  \|  _
+ ---D---  |_|-dp
+
+*/
+
+//ascii dec 32 to 127, so make sure that is dealt with when addressing 
+//areas in the the arrow, ex. '$' = segs_for_char[4],
+//NOT: segs_for_char[36], it is segs_for_char[ (<ascii char num> - 32) ];
+//array to store values for segments for chars
+unsigned int segs_for_char[] = {
 //           led       
 //           ^   b   p
 //  A:       ^KLJGCBDd
 //  B:MIHGEFA^
 //       a
-	
+	0b0, //space
+	0b0, //'!'
+	0b0100010000000000, //'"'
+	0b0, //'#'
+	0b0101011001011010, //'$'
+	0b1011010010011000, //'%'
+	0b1010001010101010,//'&'
+	0b0000000000100000,//'\''
+	0b0000000010100000,//'('
+	0b1010000000000000,//')'
+	0b1111000011110000,//'*'
+	0b0101000001010000, //'+'
+	//will continue ... 
+	//enter ALL THE CHAR SEGS!
 };
 
 void main(void)
