@@ -163,7 +163,7 @@ void main(void)
 	P1OUT |= 0xFF;
 	P2OUT |= 0x3F;
 	P1DIR |= 0xFF;
-	P1DIR |= 0x3F;
+	P2DIR |= 0x3F;
 
 
 }
