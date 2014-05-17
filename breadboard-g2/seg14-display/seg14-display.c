@@ -91,8 +91,9 @@ void write_char(unsigned char c);
 
 //typedefs
 typedef struct {
-	unsigned char p1;
-	unsigned char p2;
+	unsigned char p1; //store P1OUT values
+	unsigned char p2; //store P2OUT values
+	unsigned char ab; //store wether A or B, 0 or 1 respectively.
 } segment;
 
 /*again,
@@ -147,7 +148,7 @@ unsigned char p1_for_segs[] = {
 //an array of typedef'd struct segment type for segments
 segment seg_ports[] = {
 
-	{0, (dp0_A + dp1_A)}, //dp
+	{0, (dp0_A + dp1_A), 0}, //dp
 	{D_A,0xF}, //D
 	(B_A,0xF), //B
 	
