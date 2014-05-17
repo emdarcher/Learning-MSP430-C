@@ -128,7 +128,25 @@ unsigned int segs_for_char[] = {
 	//enter ALL THE CHAR SEGS!
 };
 
+//array to store port output for segs int the bits in the segs_for_char[] values.
+unsigned char p1_for_segs[] = {
+//values for port1 for segs
+//	  76543210
+	0b
+			
+};
+
 void main(void)
 {
+	//disable watchdog timer
+	WDTCTL = WDTPW + WDTHOLD;
 
+}
+
+void write_segs(unsigned int bits, unsigned char digit)
+{	
+	int i;
+	for (i = 0; i < 16; ++i){
+		
+	}
 }
