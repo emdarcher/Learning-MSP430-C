@@ -65,7 +65,7 @@ P1.7 K_A/M_B
 #define GND0_A BIT0
 #define GND0_B BIT1
 #define GND1_A BIT2
-#define GND1_b BIT3
+#define GND1_B BIT3
 #define dp0_A BIT4
 #define dp1_A BIT5
 #define LED_DEBUG BIT0
@@ -84,8 +84,16 @@ P1.7 K_A/M_B
 #define K_A BIT7
 #define M_B BIT7
 
+
 //prototypes
 void write_segs(unsigned int bits, unsigned char digit);
+void write_char(unsigned char c);
+
+//typedefs
+typedef struct {
+	unsigned char p1;
+	unsigned char p2;
+} segment;
 
 /*again,
 
@@ -127,19 +135,36 @@ unsigned int segs_for_char[] = {
 	//will continue ... 
 	//enter ALL THE CHAR SEGS!
 };
-
+/*
 //array to store port output for segs int the bits in the segs_for_char[] values.
 unsigned char p1_for_segs[] = {
 //values for port1 for segs
 //	  76543210
 	0b
 			
+};*/
+
+//an array of typedef'd struct segment type for segments
+segment seg_ports[] = {
+
+	{0, (dp0_A + dp1_A)}, //dp
+	{D_A,}, //D
+	
 };
 
 void main(void)
 {
 	//disable watchdog timer
 	WDTCTL = WDTPW + WDTHOLD;
+	
+	//setup ports for output
+	P1OUT |= 0xFF;
+	P2OUT |= 0x3F;
+	P1DIR |= 0xFF;
+	P1DIR |= 0x3F;
+	
+	
+	
 
 }
 
