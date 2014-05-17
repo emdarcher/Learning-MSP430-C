@@ -84,23 +84,8 @@ P1.7 K_A/M_B
 #define K_A BIT7
 #define M_B BIT7
 
-/*
- * nevermind this
- * 
-//array to hold binary values that correspond to the segments, not 
-//port values. These are from ASCII dec 32 to 127.
-unsigned char charOut[] = {
-//       b   A/B = 0/1 or: 0 for A, 1 for B.
-//  A:KLJGCBD^	<-these are for the segments
-//  B:MIHGEFA^
-//       a    
-	0b00000000, //space
-	0b00000000, //can't '!'
-	0,//'"'
-	0,//'#'
-	0b,
-	0,
-};*/
+//prototypes
+void write_segs(unsigned int bits, unsigned char digit);
 
 /*again,
 
@@ -116,6 +101,7 @@ E M L K C
 
 */
 
+
 //ascii dec 32 to 127, so make sure that is dealt with when addressing 
 //areas in the the arrow, ex. '$' = segs_for_char[4],
 //NOT: segs_for_char[36], it is segs_for_char[ (<ascii char num> - 32) ];
@@ -126,18 +112,18 @@ unsigned int segs_for_char[] = {
 //  A:       ^KLJGCBDd
 //  B:MIHGEFA^
 //       a
-	0b0, //space
-	0b0, //'!'
-	0b0100010000000000, //'"'
-	0b0, //'#'
-	0b0101011001011010, //'$'
-	0b1011010010011000, //'%'
-	0b1010001010101010,//'&'
-	0b0000000000100000,//'\''
-	0b0000000010100000,//'('
-	0b1010000000000000,//')'
-	0b1111000011110000,//'*'
-	0b0101000001010000, //'+'
+    0b0, //space
+    0b0, //'!'
+    0b0100010000000000, //'"'
+    0b0, //'#'
+    0b0101011001011010, //'$'
+    0b1011010010011000, //'%'
+    0b1010001010101010,//'&'
+    0b0000000000100000,//'\''
+    0b0000000010100000,//'('
+    0b1010000000000000,//')'
+    0b1111000011110000,//'*'
+    0b0101000001010000, //'+'
 	//will continue ... 
 	//enter ALL THE CHAR SEGS!
 };
