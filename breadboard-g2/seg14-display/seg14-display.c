@@ -148,7 +148,9 @@ unsigned char p1_for_segs[] = {
 segment seg_ports[] = {
 
 	{0, (dp0_A + dp1_A)}, //dp
-	{D_A,}, //D
+	{D_A,0xF}, //D
+	(B_A,0xF), //B
+	
 	
 };
 
@@ -162,9 +164,7 @@ void main(void)
 	P2OUT |= 0x3F;
 	P1DIR |= 0xFF;
 	P1DIR |= 0x3F;
-	
-	
-	
+
 
 }
 
