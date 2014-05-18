@@ -83,7 +83,7 @@ P1.7 K_A/M_B
 
 //prototypes
 void write_segs(unsigned int bits, unsigned char digit);
-void write_char(unsigned char c);
+void write_char(unsigned char c, unsigned char position);
 
 //typedefs
 typedef struct {
@@ -156,6 +156,20 @@ segment seg_ports[] = {
 	{0, (dp0_A + dp1_A), 0}, //dp
 	{D_A,0xF,0}, //D
 	{B_A,0xF,0}, //B
+	{}, //C
+	{}, //Gb
+	{}, //J
+	{}, //L
+	{}, //K
+	{}, //led
+	{}, //A
+	{}, //F
+	{}, //E
+	{}, //Ga
+	{}, //H
+	{}, //I
+	{}, //M
+	
 	
 	
 };
@@ -170,8 +184,20 @@ void main(void)
 	P2OUT |= 0x3F;
 	P1DIR |= 0xFF;
 	P2DIR |= 0x3F;
+	
+	//infinite
+	for(;;){
+		write_char('*',0); //test if it can show '*' in position 0
+	}
 
 
+}
+
+void write_char(unsigned char c, unsigned char position)
+{
+	
+	write_segs(segs_for_char[(c - 32)], position );
+	
 }
 
 void write_segs(unsigned int bits, unsigned char digit)
@@ -192,7 +218,7 @@ void write_segs(unsigned int bits, unsigned char digit)
 				
 			}*/
 			P1OUT = 0;
-			P2OUT = 0xFF; //set all high to disable other GNDS
+			P2OUT = 0x3F; //set all high to disable other GNDS
 			P2OUT |= dps_A[digit];
 			P2OUT &= ~(grounds_A[digit]);
 		}
@@ -202,14 +228,15 @@ void write_segs(unsigned int bits, unsigned char digit)
 		else {
 			P1OUT = seg_ports[i].p1;
 			if(seg_ports[i].ab == 0){ //for A
-				
-				
+				P2OUT = 0x0F; //disable GNDs by putting them high
+				P2OUT &= ~(grounds_A[digit]);
 			}
 			else if(seg_ports[i].ab == 1){ //for B
-				
+				P2OUT = 0x0F; //same
+				P2OUT &= ~(grounds_B[digit]);
 			}
 			else { //for whatever
-				
+				P2OUT = 0x0F; //disable GNDs
 			}
 		}
 	}
