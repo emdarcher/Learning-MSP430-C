@@ -80,10 +80,12 @@ P1.7 K_A/M_B
 #define K_A BIT7
 #define M_B BIT7
 
+#define NUM_DIGITS 2 //put number of digits/chars of displays here
 
 //prototypes
 void write_segs(unsigned int bits, unsigned char digit);
 void write_char(unsigned char c, unsigned char position);
+void write_string(unsigned char *out_string);
 
 //typedefs
 typedef struct {
@@ -188,11 +190,21 @@ void main(void)
 	//infinite
 	for(;;){
 		write_char('$',1); //test if it can show '*' in position 0
-		//unsigned int j;
-		//for(j=0; j < 500; j++){}; //delay
 	}
 
 
+}
+
+void write_string(unsigned char *out_string)
+{
+	int k;
+	for(k=0; k < sizeof(out_string); k++){
+		//go through chars in the string
+		write_char(out_string[k], (sizeof(out_string) - k)); 
+		
+	}
+	
+	
 }
 
 void write_char(unsigned char c, unsigned char position)
@@ -203,7 +215,8 @@ void write_char(unsigned char c, unsigned char position)
 }
 
 void write_segs(unsigned int bits, unsigned char digit)
-{	
+{
+if(digit < NUM_DIGITS){		
 	int i;
 	for (i = 0; i < 16; i++){
 		unsigned char bit_state = ((bits & (1<<i)) == (1<<i)) ? 1:0;
@@ -257,4 +270,5 @@ void write_segs(unsigned int bits, unsigned char digit)
 		P2OUT = 0x0F; //disable GNDs and dps
 		}
 	}
+}
 }
