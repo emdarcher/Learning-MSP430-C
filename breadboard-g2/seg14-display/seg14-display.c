@@ -189,7 +189,9 @@ void main(void)
 	
 	//infinite
 	for(;;){
-		write_char('$',1); //test if it can show '*' in position 0
+		//test string stuff
+		write_string("()");
+		//write_char('$',1); //test if it can show '*' in position 0
 	}
 
 
@@ -200,7 +202,7 @@ void write_string(unsigned char *out_string)
 	int k;
 	for(k=0; k < sizeof(out_string); k++){
 		//go through chars in the string
-		write_char(out_string[k], (sizeof(out_string) - k)); 
+		write_char(out_string[k], (sizeof(out_string) - (k+1))); 
 		
 	}
 	
