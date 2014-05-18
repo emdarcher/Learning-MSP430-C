@@ -88,7 +88,7 @@ void write_char(unsigned char c, unsigned char position);
 //typedefs
 typedef struct {
 	unsigned char p1; //store P1OUT values
-	unsigned char p2; //store P2OUT values
+	//unsigned char p2; //store P2OUT values
 	unsigned char ab; //store wether A or B, 0 or 1 respectively.
 						//give 2 if doesn't matter, like the debug LED.
 } segment;
@@ -153,22 +153,22 @@ unsigned char p1_for_segs[] = {
 //an array of typedef'd struct segment type for segments
 segment seg_ports[] = {
 
-	{0, (dp0_A + dp1_A), 0}, //dp
-	{D_A,0xF,0}, //D
-	{B_A,0xF,0}, //B
-	{}, //C
-	{}, //Gb
-	{}, //J
-	{}, //L
-	{}, //K
-	{}, //led
-	{}, //A
-	{}, //F
-	{}, //E
-	{}, //Ga
-	{}, //H
-	{}, //I
-	{}, //M
+	{0, 0}, //dp
+	{D_A,0}, //D
+	{B_A,0}, //B
+	{C_A,0}, //C
+	{Gb_A,0}, //Gb
+	{J_A,0}, //J
+	{L_A,0}, //L
+	{K_A,0}, //K
+	{LED_DEBUG, 2}, //led
+	{A_B,1}, //A
+	{F_B,1}, //F
+	{E_B,1}, //E
+	{Ga_B,1}, //Ga
+	{H_B,1}, //H
+	{I_B,1}, //I
+	{M_B,1}, //M
 	
 	
 	
@@ -224,6 +224,9 @@ void write_segs(unsigned int bits, unsigned char digit)
 		}
 		else if(i == 8){
 			//will put stuff for led here
+			//disable GNDs and dps
+			P2OUT = 0x0F;
+			P1OUT = seg_ports[i].p1;
 		}
 		else {
 			P1OUT = seg_ports[i].p1;
