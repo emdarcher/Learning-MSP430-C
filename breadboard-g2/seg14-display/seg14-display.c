@@ -170,11 +170,25 @@ void write_segs(unsigned int bits, unsigned char digit)
 {	
 	int i;
 	for (i = 0; i < 16; ++i){
-		if(i == 0){
+		if(i == 0){ //dp stuff
 			if(digit == 0){
 				P1OUT = 0;
+				P2OUT |= (dp0_A);
+				P2OUT &= ~(GND0_A);
+				//finish stuff here
+			}
+			else if(digit == 1){
+				P1OUT = 0;
+				P2OUT |= (dp1_A);
+				P2OUT &= ~(GND1_A);
 				
 			}
+		}
+		else if(i == 8){
+			//will put stuff for led here
+		}
+		else {
+			
 		}
 	}
 }
