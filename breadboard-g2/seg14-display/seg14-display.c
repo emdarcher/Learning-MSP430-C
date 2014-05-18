@@ -188,7 +188,11 @@ void write_segs(unsigned int bits, unsigned char digit)
 			//will put stuff for led here
 		}
 		else {
-			
+			P1OUT = seg_ports[i].p1;
+			if(digit == 0){
+				
+			}
+			else if(digit == 1){}
 		}
 	}
 }
