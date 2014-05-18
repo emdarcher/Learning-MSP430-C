@@ -1,7 +1,6 @@
 //code to display stuff on 14-segment display that is common cathode
 //and is multiplexed .
 
-
 /*
 
 letters that correspond to segments
@@ -15,13 +14,14 @@ E M L K C
  ---D---  |_|-dp
 
 */
+
 /*
 pinout
 
 # on package
+
 IEE3785A
 8504   3
-
            ____________
 Gb_A/Ga_B -1         18-   J_A/H_B
 empty     -2 ------- 17-   L_A/I_B
@@ -33,13 +33,9 @@ empty     -7 digit 0 12-   D_A/A_B
 GND0_B    -8 ------- 11-   empty
 dp0_A     -9 o       10-   GND0_A
            ------------
-
-
 */
-
 /*
 mcu pins to display
-
 
 P2.0 GND0_A
 P2.1 GND0_B
@@ -54,9 +50,9 @@ P1.3 C_A/E_B
 P1.4 Gb_A/Ga_B
 P1.5 J_A/H_B
 P1.6 L_A/I_B
-P1.7 K_A/M_B
- 
+P1.7 K_A/M_B 
 */
+
 //include stuff
 #include <msp430.h>
 
@@ -94,6 +90,7 @@ typedef struct {
 	unsigned char p1; //store P1OUT values
 	unsigned char p2; //store P2OUT values
 	unsigned char ab; //store wether A or B, 0 or 1 respectively.
+						//give 2 if doesn't matter, like the debug LED.
 } segment;
 
 /*again,
@@ -137,7 +134,7 @@ unsigned int segs_for_char[] = {
 	//enter ALL THE CHAR SEGS!
 };
 /*
-//array to store port output for segs int the bits in the segs_for_char[] values.
+//array to store port output for segs int the bits in segs_for_char[] 
 unsigned char p1_for_segs[] = {
 //values for port1 for segs
 //	  76543210
@@ -149,8 +146,8 @@ unsigned char p1_for_segs[] = {
 segment seg_ports[] = {
 
 	{0, (dp0_A + dp1_A), 0}, //dp
-	{D_A,0xF}, //D
-	(B_A,0xF), //B
+	{D_A,0xF,0}, //D
+	{B_A,0xF,0}, //B
 	
 	
 };
@@ -173,6 +170,11 @@ void write_segs(unsigned int bits, unsigned char digit)
 {	
 	int i;
 	for (i = 0; i < 16; ++i){
-		
+		if(i == 0){
+			if(digit == 0){
+				P1OUT = 0;
+				
+			}
+		}
 	}
 }
