@@ -107,6 +107,12 @@ E M L K C
 
 */
 
+//GNDs for A on digits 
+const unsigned int grounds_A[] = {GND0_A, GND1_A};
+//GNDs for B on digits
+const unsigned int grounds_B[] = {GND0_B, GND1_B};
+//dps on A
+const unsigned int dps_A[] = {dp0_A, dp1_A}; 
 
 //ascii dec 32 to 127, so make sure that is dealt with when addressing 
 //areas in the the arrow, ex. '$' = segs_for_char[4],
@@ -142,6 +148,8 @@ unsigned char p1_for_segs[] = {
 			
 };*/
 
+
+
 //an array of typedef'd struct segment type for segments
 segment seg_ports[] = {
 
@@ -171,7 +179,7 @@ void write_segs(unsigned int bits, unsigned char digit)
 	int i;
 	for (i = 0; i < 16; ++i){
 		if(i == 0){ //dp stuff
-			if(digit == 0){
+			/*if(digit == 0){
 				P1OUT = 0;
 				P2OUT |= (dp0_A);
 				P2OUT &= ~(GND0_A);
@@ -182,17 +190,27 @@ void write_segs(unsigned int bits, unsigned char digit)
 				P2OUT |= (dp1_A);
 				P2OUT &= ~(GND1_A);
 				
-			}
+			}*/
+			P1OUT = 0;
+			P2OUT = 0xFF; //set all high to disable other GNDS
+			P2OUT |= dps_A[digit];
+			P2OUT &= ~(grounds_A[digit]);
 		}
 		else if(i == 8){
 			//will put stuff for led here
 		}
 		else {
 			P1OUT = seg_ports[i].p1;
-			if(digit == 0){
+			if(seg_ports[i].ab == 0){ //for A
+				
 				
 			}
-			else if(digit == 1){}
+			else if(seg_ports[i].ab == 1){ //for B
+				
+			}
+			else { //for whatever
+				
+			}
 		}
 	}
 }
