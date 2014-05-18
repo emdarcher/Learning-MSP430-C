@@ -187,7 +187,9 @@ void main(void)
 	
 	//infinite
 	for(;;){
-		write_char('*',0); //test if it can show '*' in position 0
+		write_char('$',1); //test if it can show '*' in position 0
+		//unsigned int j;
+		//for(j=0; j < 500; j++){}; //delay
 	}
 
 
@@ -203,7 +205,12 @@ void write_char(unsigned char c, unsigned char position)
 void write_segs(unsigned int bits, unsigned char digit)
 {	
 	int i;
-	for (i = 0; i < 16; ++i){
+	for (i = 0; i < 16; i++){
+		unsigned char bit_state = ((bits & (1<<i)) == (1<<i)) ? 1:0;
+		if(bit_state)
+		{
+			
+			
 		if(i == 0){ //dp stuff
 			/*if(digit == 0){
 				P1OUT = 0;
@@ -241,6 +248,13 @@ void write_segs(unsigned int bits, unsigned char digit)
 			else { //for whatever
 				P2OUT = 0x0F; //disable GNDs
 			}
+		}
+		int j;
+		for(j = 0; j<100;j++){}
+		
+		} else {
+		P1OUT = 0x00; //clear p1
+		P2OUT = 0x0F; //disable GNDs and dps
 		}
 	}
 }
