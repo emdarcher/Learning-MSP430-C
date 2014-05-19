@@ -152,7 +152,7 @@ const unsigned int segs_for_char[] = {
     0b0001000000010000, // '-'
     0b0000000000000001, //'.'
     0b1000000000100000, //'/'
-    0b1000011000101110,//0
+    0b1000111000101110,//0
     0b0000000000001100, //1
     0b0001101000010110, //2
     0b0000001000011110, //3
@@ -231,8 +231,21 @@ void main(void)
 	//infinite
 	for(;;){
 		//test string stuff
-		write_string("0042"); //show 42
+		//write_string("0042"); //show 42
 		//write_char('*',0); //test if it can show '*' in position 0
+        //unsigned char *outnum;
+        unsigned char n = 0;
+        for(n = 99; n >0; n--){
+            int r;
+            
+            //outnum[1] = (unsigned char)((n % 10)+48);
+            //outnum[0] = (unsigned char)((n / 10)+48);
+            for(r = 0; r < 20; r++){ 
+                //write_string(outnum);
+                write_char(((unsigned char)((n%10)+48)), 0);
+                write_char(((unsigned char)((n/10)+48)), 1);
+            }
+        }
 	}
 	
 
