@@ -95,6 +95,16 @@ typedef struct {
 						//give 2 if doesn't matter, like the debug LED.
 } segment;
 
+//delay thingy from this link: http://forum.43oh.com/topic/58-delay-function/
+static void __inline__ msp_delay(register unsigned int n) 
+{
+   __asm__ __volatile__(
+" 1: \n"
+" dec %[n] \n"
+" jne 1b \n"
+      : [n] "+r"(n));
+}
+
 /*again,
 
 letters that correspond to segments
@@ -299,8 +309,8 @@ if(digit < NUM_DIGITS){
 			}
 		}
 		int j;
-		for(j = 0; j<100;j++){}
-		
+		//for(j = 0; j<100;j++){}
+		msp_delay(100);
 		} else {
 		P1OUT = 0x00; //clear p1
 		P2OUT = 0x0F; //disable GNDs and dps
