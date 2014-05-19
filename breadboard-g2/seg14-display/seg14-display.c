@@ -120,7 +120,7 @@ const unsigned int dps_A[] = {dp0_A, dp1_A};
 //areas in the the arrow, ex. '$' = segs_for_char[4],
 //NOT: segs_for_char[36], it is segs_for_char[ (<ascii char num> - 32) ];
 //array to store values for segments for chars
-unsigned int segs_for_char[] = {
+const unsigned int segs_for_char[] = {
 //           led       
 //           ^   b   p
 //  A:       ^KLJGCBDd
@@ -184,7 +184,7 @@ E M L K C
 
 
 //an array of typedef'd struct segment type for segments
-segment seg_ports[] = {
+const segment seg_ports[] = {
 
 	{0, 0}, //dp
 	{D_A,0}, //D
