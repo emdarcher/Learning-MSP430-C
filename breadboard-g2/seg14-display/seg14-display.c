@@ -138,19 +138,45 @@ unsigned int segs_for_char[] = {
     0b1010000000000000,//')'
     0b1111000011110000,//'*'
     0b0101000001010000, //'+'
+    0b1000000000000000, //','
+    0b0001000000010000, // '-'
+    0b0000000000000001, //'.'
+    0b1000000000100000, //'/'
+    0b1000011000101110,//0
+    0b0000000000001100, //1
+    0b0001101000010110, //2
+    0b0000001000011110, //3
+    0b0001010000011100, //4
+    0b0001011010000010, //5
+    0b0001111000011010, //6
+    0b0000001000001100, //7
+    0b0001111000011110, //8
+    0b0001011000011110, //9
+    0b0100000001000000, //':'
+    0b1100000000000000, //';'
+    0b1000000000000010, //'<'
     
+//           led       
+//           ^   b   p
+//  A:       ^KLJGCBDd
+//  B:MIHGEFA^
+//       a
 	//will continue ... 
 	//enter ALL THE CHAR SEGS!
 };
-/*
-//array to store port output for segs int the bits in segs_for_char[] 
-unsigned char p1_for_segs[] = {
-//values for port1 for segs
-//	  76543210
-	0b
-			
-};*/
+/*again,
 
+letters that correspond to segments
+ ---A---
+|\  |  /|
+F H I J B
+|_Ga|Gb_|
+|  /|\  |
+E M L K C
+|/  |  \|  _
+ ---D---  |_|-dp
+
+*/
 
 
 //an array of typedef'd struct segment type for segments
