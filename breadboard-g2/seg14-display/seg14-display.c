@@ -55,7 +55,7 @@ P1.7 K_A/M_B
 
 //include stuff
 #include <msp430.h>
-
+#include <string.h>
 
 
 #define GND0_A BIT0
@@ -190,20 +190,23 @@ void main(void)
 	//infinite
 	for(;;){
 		//test string stuff
-		write_string("()");
-		//write_char('$',1); //test if it can show '*' in position 0
+		write_string("$&(%");
+		//write_char('*',0); //test if it can show '*' in position 0
 	}
-
+	
 
 }
 
 void write_string(unsigned char *out_string)
 {
+	int s = strlen(out_string); //finding out that strlen was needed
+								// took way too long. :(
 	int k;
-	for(k=0; k < sizeof(out_string); k++){
+	for(k = s; k > 0 ; k--){
 		//go through chars in the string
-		write_char(out_string[k], (sizeof(out_string) - (k+1))); 
-		
+		if(k >= 0){
+			write_char(out_string[(s - k)], k - 1); 
+		}
 	}
 	
 	
@@ -272,5 +275,5 @@ if(digit < NUM_DIGITS){
 		P2OUT = 0x0F; //disable GNDs and dps
 		}
 	}
-}
+} else {P1OUT = 0x00; P2OUT = 0x0F;}
 }
