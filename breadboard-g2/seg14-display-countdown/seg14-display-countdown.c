@@ -253,7 +253,7 @@ void main(void)
 	
 
 }
-
+//do i need this still???
 void write_string(unsigned char *out_string)
 {
 	int s = strlen(out_string); //finding out that strlen was needed
