@@ -131,11 +131,13 @@ int main(void)
 		}*/
 		for(x = 0; x < 99; x++){
 		__delay_cycles(500);
-		tempVals = tempVals + tempOut();
-		write_number(avg);
+		//tempVals = tempVals + tempOut();
+		//write_number(avg);
+		write_number(temp);
 		__delay_cycles(500);
 		}
-		avg = tempVals / 50;
+		temp=tempOut();
+		//avg = tempVals / 50;
 		//write_number(tempVals / 10 );
 	}
 
