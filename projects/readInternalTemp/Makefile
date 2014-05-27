@@ -4,7 +4,7 @@ OBJECTS = readInternalTemp.c
  
 CC = msp430-gcc
 #change to correct ic here
-CFLAGS =-Os -Wall -g -mmcu=msp430x2252
+CFLAGS =-Os -Wall -g -mmcu=msp430g2252
  
 all : $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o main.elf

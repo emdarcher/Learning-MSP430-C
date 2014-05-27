@@ -77,26 +77,6 @@ unsigned char number_seg_bytes[] = {
 
 };
 
-/*
-from here:
-https://indiantinker.wordpress.com/2012/12/13/tutorial-using-the-internal-temperature-sensor-on-a-msp430/ 
-*/
-void tempInit()
-{
-    ADC10CTL0=SREF_1 + REFON + ADC10ON + ADC10SHT_3 ; //1.5V ref,Ref on,64 clocks for sample
-    ADC10CTL1=INCH_10+ ADC10DIV_3; //temp sensor is at 10 and clock/4
-}
-int tempOut()
-{
-    int t=0;
-    __delay_cycles(1000);              //wait 4 ref to settle
-    ADC10CTL0 |= ENC + ADC10SC;      //enable conversion and start conversion
-    while(ADC10CTL1 & BUSY);         //wait..i am converting..pum..pum..
-    t=ADC10MEM;                       //store val in t
-    ADC10CTL0&=~ENC;                     //disable adc conv
-    return(int) ((t * 27069L - 18169625L) >> 16); //convert and pass
-}
-
 int main(void)
 {
 	
@@ -112,24 +92,14 @@ int main(void)
 	//}	P2OUT &= ~(ALL_DIGS); //set digits LOW so nothing goes on	
 	
 	clear_display();
-
-	volatile int temp;
-	temp=0;
-	tempInit();//initialize adc	
-
-	//unsigned int x;
+	unsigned int x;
 	for(;;){
-		/*for(i = 99; i > 0 ; i--){
+		for(i = 99; i > 0 ; i--){
 			for (x = 0; x < 2048; x++){ 
 				//test
 				write_number(i);
 			}
-		}*/
-		__delay_cycles(500);
-		temp=tempOut();
-		write_number(temp);
-		__delay_cycles(500);
-				
+		}		
 	}
 
 	return 0; //should never reach this point
@@ -149,7 +119,7 @@ void write_digit(unsigned char num, unsigned char dig){
 	clear_display();
 	P2OUT |= digit_bits[dig];
 	P1OUT = number_seg_bytes[num]; 
-	__delay_cycles(1000);
+
 }
 
 void write_number(unsigned char number){
