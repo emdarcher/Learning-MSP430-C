@@ -29,3 +29,5 @@ C0    --|______|--  G0
 common adode for each digit
 pull segment's pin LOW to turn it on
 */
+
+
