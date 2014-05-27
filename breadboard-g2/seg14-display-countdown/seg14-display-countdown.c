@@ -105,6 +105,11 @@ static void __inline__ msp_delay(register unsigned int n)
       : [n] "+r"(n));
 }
 
+void inline clear_gnds(){
+        //P1OUT = 0x00; //clear p1
+		P2OUT = 0x0F; //disable GNDs and dps
+}
+
 /*again,
 
 letters that correspond to segments
@@ -231,13 +236,24 @@ void main(void)
 	//infinite
 	for(;;){
 		//test string stuff
-		write_string("0042"); //show 42
+		//write_string("0042"); //show 42
 		//write_char('*',0); //test if it can show '*' in position 0
+        //unsigned char *outnum;
+        unsigned char n = 0;
+        for(n = 99; n >0; n--){
+            int r;
+            
+            for(r = 0; r < 100; r++){ 
+            //adds 48 to results so it brings it up to numbers in ASCII
+                write_char(((unsigned char)((n%10)+48)), 0);
+                write_char(((unsigned char)((n/10)+48)), 1);
+            }
+        }
 	}
 	
 
 }
-
+//do i need this still???
 void write_string(unsigned char *out_string)
 {
 	int s = strlen(out_string); //finding out that strlen was needed
@@ -265,8 +281,8 @@ void write_segs(unsigned int bits, unsigned char digit)
 if(digit < NUM_DIGITS){		
 	int i;
 	for (i = 0; i < 16; i++){
-		unsigned char bit_state = ((bits & (1<<i)) == (1<<i)) ? 1:0;
-		if(bit_state)
+		//unsigned char bit_state = ((bits & (1<<i)) == (1<<i)) ? 1:0;
+		if(((bits & (1<<i)) == (1<<i)))
 		{
 			
 			
@@ -284,37 +300,42 @@ if(digit < NUM_DIGITS){
 				
 			}*/
 			P1OUT = 0;
-			P2OUT = 0x3F; //set all high to disable other GNDS
+			//P2OUT = 0x3F; //set all high to disable other GNDS
+            clear_gnds();
 			P2OUT |= dps_A[digit];
 			P2OUT &= ~(grounds_A[digit]);
 		}
 		else if(i == 8){
 			//will put stuff for led here
 			//disable GNDs and dps
-			P2OUT = 0x0F;
+			//P2OUT = 0x0F;
+            clear_gnds();
 			P1OUT = seg_ports[i].p1;
 		}
 		else {
 			P1OUT = seg_ports[i].p1;
 			if(seg_ports[i].ab == 0){ //for A
-				P2OUT = 0x0F; //disable GNDs by putting them high
+				//P2OUT = 0x0F; //disable GNDs by putting them high
+                clear_gnds();
 				P2OUT &= ~(grounds_A[digit]);
 			}
 			else if(seg_ports[i].ab == 1){ //for B
-				P2OUT = 0x0F; //same
+				//P2OUT = 0x0F; //same
+                clear_gnds();
 				P2OUT &= ~(grounds_B[digit]);
 			}
 			else { //for whatever
-				P2OUT = 0x0F; //disable GNDs
+				//P2OUT = 0x0F; //disable GNDs
+                clear_gnds();
 			}
 		}
 		int j;
 		//for(j = 0; j<100;j++){}
-		msp_delay(500);
+		msp_delay(100);
 		} else {
-		P1OUT = 0x00; //clear p1
-		P2OUT = 0x0F; //disable GNDs and dps
+        P1OUT = 0;
+		clear_gnds();
 		}
 	}
-} else {P1OUT = 0x00; P2OUT = 0x0F;}
+} else {P1OUT = 0; clear_gnds();}
 }
