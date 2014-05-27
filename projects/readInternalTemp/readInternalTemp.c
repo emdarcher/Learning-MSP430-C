@@ -64,20 +64,20 @@ int i;
 unsigned char number_seg_bytes[] = {
 //       unconfigured
 //ABCDEFG^
-0b00000010;//0
-0b10011110;//1
-0b00100100;//2
-0b00001100;//3
-0b10011000;//4
-0b01001000;//5
-0b01000000;//6
-0b00011110;//7
-0b00000000;//8
-0b00011000;//9
+0b00000010,//0
+0b10011110,//1
+0b00100100,//2
+0b00001100,//3
+0b10011000,//4
+0b01001000,//5
+0b01000000,//6
+0b00011110,//7
+0b00000000,//8
+0b00011000,//9
 
 };
 
-void main(void)
+int main(void)
 {
 	
 	WDTCTL = WDTPW + WDTHOLD; //disable watchdog
@@ -91,7 +91,7 @@ void main(void)
 	//	P2DIR |= digit_bits[i];		
 	//}	P2OUT &= ~(ALL_DIGS); //set digits LOW so nothing goes on	
 	
-	clear_dispay();
+	clear_display();
 
 	for(;;){
 		//test
