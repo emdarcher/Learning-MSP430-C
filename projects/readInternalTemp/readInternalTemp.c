@@ -77,6 +77,8 @@ unsigned char number_seg_bytes[] = {
 
 };
 
+int tempVals;
+
 /*
 from here:
 https://indiantinker.wordpress.com/2012/12/13/tutorial-using-the-internal-temperature-sensor-on-a-msp430/ 
@@ -117,7 +119,7 @@ int main(void)
 	temp=0;
 	tempInit();//initialize adc	
 
-	//unsigned int x;
+	unsigned int x;
 	for(;;){
 		/*for(i = 99; i > 0 ; i--){
 			for (x = 0; x < 2048; x++){ 
@@ -125,11 +127,13 @@ int main(void)
 				write_number(i);
 			}
 		}*/
+		//for(x = 0; x < 9; x++){
 		__delay_cycles(500);
-		temp=tempOut();
-		write_number(temp);
+		//tempVals = tempVals + tempOut();
+		write_number(tempOut());
 		__delay_cycles(500);
-				
+		//}
+		//write_number(tempVals / 10 );
 	}
 
 	return 0; //should never reach this point
