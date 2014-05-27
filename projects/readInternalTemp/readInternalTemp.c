@@ -118,6 +118,8 @@ int main(void)
 	volatile int temp;
 	temp=0;
 	tempInit();//initialize adc	
+	
+	int avg = 0;	
 
 	unsigned int x;
 	for(;;){
@@ -127,12 +129,13 @@ int main(void)
 				write_number(i);
 			}
 		}*/
-		//for(x = 0; x < 9; x++){
+		for(x = 0; x < 10; x++){
 		__delay_cycles(500);
-		//tempVals = tempVals + tempOut();
-		write_number(tempOut());
+		tempVals = tempVals + tempOut();
+		write_number(avg);
 		__delay_cycles(500);
-		//}
+		}
+		avg = tempVals / 10;
 		//write_number(tempVals / 10 );
 	}
 
@@ -153,7 +156,7 @@ void write_digit(unsigned char num, unsigned char dig){
 	clear_display();
 	P2OUT |= digit_bits[dig];
 	P1OUT = number_seg_bytes[num]; 
-	__delay_cycles(1000);
+	__delay_cycles(500);
 }
 
 void write_number(unsigned char number){
