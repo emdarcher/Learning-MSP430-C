@@ -42,21 +42,13 @@ int main(void) {
 //	Functions
 
 //	Interrupt Service Routines
-//mspgcc way (nicer I think)
+//  mspgcc way (nicer I think)
 __attribute__((interrupt(TIMER0_A0_VECTOR))) //notice! for the 20pin chips:
 											//had to change TIMERA0_VECTOR
 											//to TIMER0_A0_VECTOR 
 void CCR0_ISR(void){
-
 	if (++i == 120) {
 		P1OUT ^= LED1; //toggle led
 		i=0;
 	}
 }
-//#pragma vector = TIMERA0_VECTOR //this is CCS stuff
-//__interrupt void CCR0_ISR(void) {
-//	if (++i == 120) {
-//		P1OUT ^= LED1; //toggle led
-//		i=0;
-//	}
-//}
