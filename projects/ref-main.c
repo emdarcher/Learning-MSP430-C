@@ -10,7 +10,7 @@
 
 //	Function Prototypes/Definitions
 
-int main(void) {
+void main(void) {
 	WDTCTL = WDTPW + WDTHOLD; //disable watchdog
 	
 	//initialization stuff here
@@ -20,7 +20,7 @@ int main(void) {
 	for(;;) {
 
 	}
-	return 0; //should never reach this	
+	//return 0; //should never reach this	
 }
 
 //	Functions
