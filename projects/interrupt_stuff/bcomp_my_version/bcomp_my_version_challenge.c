@@ -48,20 +48,20 @@ int main(void) {
 //	Functions
 
 //	Interrupt Service Routines
-
+/*
 __attribute__((interrupt(TIMER0_A0_VECTOR))) //notice! for the 20pin chips:
 											//had to change TIMERA0_VECTOR
 											//to TIMER0_A0_VECTOR 
 void CCR0_ISR(void){
-	P1OUT ^= flash;// if flash is zero, keep LED off
+	//P1OUT ^= flash;// if flash is zero, keep LED off
 								// if flash is LED1, toggle LED.
-	//if (flash >0){
-		//P1OUT |= flash;
-	//} else {
-	//	P1OUR &= flash;
-	//}
+	if (flash >0){
+		P1OUT |= flash;
+	} else {
+		P1OUR &= flash;
+	}
 }
-
+*/
 __attribute__((interrupt(COMPARATORA_VECTOR)))
 void COMPA_ISR(void) {
 		
