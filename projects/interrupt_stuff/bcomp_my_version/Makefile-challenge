@@ -1,30 +1,30 @@
 #change to correct file
 #OBJECTS = main.o 
 OBJECTS = bcomp_my_version_challenge.c
-ELFNAME = challenge 
+ELFNAME = challenge.elf 
 
 CC = msp430-gcc
 #change to correct ic here
 CFLAGS =-Os -Wall -g -mmcu=msp430g2152
  
 all : $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(ELFNAME).elf
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(ELFNAME)
  
 %.o : %.c 
 	$(CC) $(CFLAGS) -c $<
 
  
 clean:
-	rm -fr $(OBJECTS) $(ELFNAME).elf
+	rm -fr $(OBJECTS) $(ELFNAME)
  
 erase:
 	mspdebug rf2500 "erase"
  
 upload:
-	mspdebug rf2500 "prog $(ELFNAME).elf"
+	mspdebug rf2500 "prog $(ELFNAME)"
 
 tilib-upload:
-	mspdebug-new tilib "prog $(ELFNAME).elf"
+	mspdebug-new tilib "prog $(ELFNAME)"
 
 size:
-	msp430-size $(ELFNAME).elf
+	msp430-size $(ELFNAME)

@@ -1,4 +1,10 @@
 //main code
+//alteration that lights led1 when input is above 0.5 * Vcc (1/2)
+//and lights led2 when input is above 0.25 * Vcc (1/4)
+//using the built in analog comparator
+//this based on the exercise at the end ot Tutorial 12
+// on mspsci.blogspot.com
+
 
 //	Header Files
 
@@ -21,8 +27,9 @@ void main(void) {
 	//initialization stuff here
 		//remember to enable any pull-up/downs!
 	P1OUT = 0;
-	P1DIR = LED1;				// output on P1.0 for LED
-	
+	P1DIR |= (LED1|LED2);				// output on P1.0 for LED1
+										// and P1.6 for LED2
+						
 	CACTL1 = CAREF1 + CARSEL + CAIE;	// 0.5 Vcc ref on - pin, enable
 										// interrupts on rising edge.
 	CACTL2 = P2CA4 + CAF;		// Input CA1 on + pin, filter output.
@@ -48,7 +55,7 @@ void main(void) {
 //	Functions
 
 //	Interrupt Service Routines
-/*
+
 __attribute__((interrupt(TIMER0_A0_VECTOR))) //notice! for the 20pin chips:
 											//had to change TIMERA0_VECTOR
 											//to TIMER0_A0_VECTOR 
@@ -61,7 +68,7 @@ void CCR0_ISR(void){
 		P1OUR &= flash;
 	}
 }
-*/
+
 __attribute__((interrupt(COMPARATORA_VECTOR)))
 void COMPA_ISR(void) {
 		
