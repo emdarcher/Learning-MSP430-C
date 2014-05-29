@@ -15,7 +15,7 @@
 
 //	Function Prototypes/Definitions
 
-int main(void) {
+void main(void) {
 	WDTCTL = WDTPW + WDTHOLD; //disable watchdog
 	
 	//initialization stuff here
@@ -28,9 +28,10 @@ int main(void) {
 	BCSCTL1 = CALBC1_1MHZ;		// Running at 1 MHz
 	DCOCTL = CALDCO_1MHZ;
 
-	TACCR0 = 144;           // With the Timer using SMCLK div 8 (125 kHz), this
+	TACCR0 = 14400;           // With the Timer using SMCLK div 8 (125 kHz), this
 							// value gives a frequency of 125000/(TACCR0+1) Hz.
 							// For TACCR0 = 144, that's 862 Hz.
+							// at 14400 it is 8.7... Hz
 							
 	TACCTL0 = CCIE;         // Enable interrupts for CCR0.
 	TACTL = TASSEL_2 + ID_3 + MC_1 + TACLR;  // SMCLK, div 8, up mode,
