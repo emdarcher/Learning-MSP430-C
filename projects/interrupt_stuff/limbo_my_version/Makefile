@@ -1,10 +1,10 @@
 #change to correct file
 #OBJECTS = main.o 
-OBJECTS = main.c
+OBJECTS = limbo_my_version.c
  
 CC = msp430-gcc
 #change to correct ic here
-CFLAGS =-Os -Wall -g -mmcu=msp430x2231
+CFLAGS =-Os -Wall -g -mmcu=msp430g2152
  
 all : $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o main.elf
@@ -24,5 +24,6 @@ upload:
 
 tilib-upload:
  	mspdebug-new tilib "prog main.elf"
+ 	
 size:
 	msp430-size main.elf
