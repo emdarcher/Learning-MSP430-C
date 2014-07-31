@@ -11,11 +11,14 @@ void main(void){
 	while(1){
 		P1OUT ^= 0x01;
 		
-		int i;
+		int i=10;
 		//delay
-		for(i = 0; i < 0xFFFF; i++){
-		}
-	}
+		//for(i = 0; i < 0xFFFF; i++){
+		//}
+        while(i--){
+        __delay_cycles(50000);
+        }	
+    }
 
 
 }
